@@ -147,12 +147,12 @@ export default function SalesPage() {
   }
 
   return (
-    <div className="container">
-      <div style={{ minHeight: '100vh', paddingTop: '1rem' }}>
-        <h1 className="title">زیادکردنی کاڵای نوێ</h1>
+    <div className="sales-container">
+      <div className="sales-content">
+        <h1 className="page-title">زیادکردنی کاڵای نوێ</h1>
         
-        <div className="card">
-          <form onSubmit={handleSubmit}>
+        <div className="form-card">
+          <form onSubmit={handleSubmit} className="sales-form">
             <div style={{ marginBottom: '1rem' }}>
               <label className="label">ناو *</label>
               <input
