@@ -26,10 +26,19 @@ export default function SoldPage() {
 
   const fetchSales = async () => {
     try {
-      const response = await fetch('/api/sales')
-      if (response.ok) {
-        const data = await response.json()
-        setSales(data.sales)
+      const isProduction = process.env.NODE_ENV === 'production'
+      
+      if (isProduction) {
+        // Use localStorage for GitHub Pages
+        const salesData = JSON.parse(localStorage.getItem('sales') || '[]')
+        setSales(salesData)
+      } else {
+        // Use API for development
+        const response = await fetch('/api/sales')
+        if (response.ok) {
+          const data = await response.json()
+          setSales(data.sales)
+        }
       }
     } catch (error) {
       console.error('Error fetching sales:', error)
