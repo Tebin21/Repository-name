@@ -76,6 +76,7 @@ export async function POST(request) {
 
     // Read existing sales
     const sales = readSalesData()
+    console.log('Current sales count:', sales.length)
     
     // Create new sale object
     const newSale = {
