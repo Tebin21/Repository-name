@@ -147,131 +147,132 @@ export default function SalesPage() {
   }
 
   return (
-    <div className="sales-container">
-      <div className="sales-content">
-        <h1 className="page-title">زیادکردنی کاڵای نوێ</h1>
-        
-        <div className="form-card">
-          <form onSubmit={handleSubmit} className="sales-form">
-            <div className="form-group">
-              <label className="form-label">ناو *</label>
-              <input
-                type="text"
-                name="name"
-                className={`form-input ${errors.name ? 'input-error' : ''}`}
-                value={formData.name}
-                onChange={handleInputChange}
-                placeholder="ناوی کاڵاکە"
-                required
-              />
-              {errors.name && <div className="error-message">{errors.name}</div>}
-            </div>
-
-            <div className="form-group">
-              <label className="form-label">رەقەم</label>
-              <input
-                type="text"
-                name="number"
-                className="form-input"
-                value={formData.number}
-                onChange={handleInputChange}
-                placeholder="رەقەمی کاڵاکە"
-              />
-            </div>
-
-            <div className="form-group">
-              <label className="form-label">ناونیشان</label>
-              <input
-                type="text"
-                name="address"
-                className="form-input"
-                value={formData.address}
-                onChange={handleInputChange}
-                placeholder="ناونیشانی کڕیار"
-              />
-            </div>
-
-            <div className="form-group">
-              <label className="form-label">بەروار *</label>
-              <input
-                type="date"
-                name="date"
-                className={`form-input ${errors.date ? 'input-error' : ''}`}
-                value={formData.date}
-                onChange={handleInputChange}
-                required
-              />
-              {errors.date && <div className="error-message">{errors.date}</div>}
-            </div>
-
-            <div className="form-group">
-              <label className="form-label">وەسف</label>
-              <textarea
-                name="description"
-                className="form-textarea"
-                value={formData.description}
-                onChange={handleInputChange}
-                placeholder="وەسفی کاڵاکە"
-                rows="3"
-              />
-            </div>
-
-            <div className="form-group">
-              <label className="form-label">چەند دانە *</label>
-              <input
-                type="number"
-                name="quantity"
-                className={`form-input ${errors.quantity ? 'input-error' : ''}`}
-                value={formData.quantity}
-                onChange={handleInputChange}
-                placeholder="ژمارەی دانە"
-                min="1"
-                required
-              />
-              {errors.quantity && <div className="error-message">{errors.quantity}</div>}
-            </div>
-
-            <div className="form-group">
-              <label className="form-label">نرخ *</label>
-              <input
-                type="number"
-                name="price"
-                className={`form-input ${errors.price ? 'input-error' : ''}`}
-                value={formData.price}
-                onChange={handleInputChange}
-                placeholder="نرخی کاڵاکە"
-                min="0.01"
-                step="0.01"
-                required
-              />
-              {errors.price && <div className="error-message">{errors.price}</div>}
-            </div>
-
-            {message && (
-              <div className={message.includes('سەرکەوتوویی') ? 'success' : 'error'}>
-                {message}
+    <>
+      <div className="sales-container">
+        <div className="sales-content">
+          <h1 className="page-title">زیادکردنی کاڵای نوێ</h1>
+          
+          <div className="form-card">
+            <form onSubmit={handleSubmit} className="sales-form">
+              <div className="form-group">
+                <label className="form-label">ناو *</label>
+                <input
+                  type="text"
+                  name="name"
+                  className={`form-input ${errors.name ? 'input-error' : ''}`}
+                  value={formData.name}
+                  onChange={handleInputChange}
+                  placeholder="ناوی کاڵاکە"
+                  required
+                />
+                {errors.name && <div className="error-message">{errors.name}</div>}
               </div>
-            )}
 
-            <div className="form-actions">
-              <button type="submit" className="btn-primary">
-                ناردن
-              </button>
-              <button type="button" onClick={goBack} className="btn-secondary">
-                گەڕانەوە
-              </button>
-            </div>
-          </form>
-        </div>
+              <div className="form-group">
+                <label className="form-label">رەقەم</label>
+                <input
+                  type="text"
+                  name="number"
+                  className="form-input"
+                  value={formData.number}
+                  onChange={handleInputChange}
+                  placeholder="رەقەمی کاڵاکە"
+                />
+              </div>
 
-        <div className="info-note">
-          <h3 className="note-title">تێبینی:</h3>
-          <p className="note-text">
-            ئەم فۆرمە بۆ تۆمارکردنی فرۆشتنەکانە. تکایە زانیاریەکان بە وردی پڕ بکەرەوە.
-          </p>
+              <div className="form-group">
+                <label className="form-label">ناونیشان</label>
+                <input
+                  type="text"
+                  name="address"
+                  className="form-input"
+                  value={formData.address}
+                  onChange={handleInputChange}
+                  placeholder="ناونیشانی کڕیار"
+                />
+              </div>
+
+              <div className="form-group">
+                <label className="form-label">بەروار *</label>
+                <input
+                  type="date"
+                  name="date"
+                  className={`form-input ${errors.date ? 'input-error' : ''}`}
+                  value={formData.date}
+                  onChange={handleInputChange}
+                  required
+                />
+                {errors.date && <div className="error-message">{errors.date}</div>}
+              </div>
+
+              <div className="form-group">
+                <label className="form-label">وەسف</label>
+                <textarea
+                  name="description"
+                  className="form-textarea"
+                  value={formData.description}
+                  onChange={handleInputChange}
+                  placeholder="وەسفی کاڵاکە"
+                  rows="3"
+                />
+              </div>
+
+              <div className="form-group">
+                <label className="form-label">چەند دانە *</label>
+                <input
+                  type="number"
+                  name="quantity"
+                  className={`form-input ${errors.quantity ? 'input-error' : ''}`}
+                  value={formData.quantity}
+                  onChange={handleInputChange}
+                  placeholder="ژمارەی دانە"
+                  min="1"
+                  required
+                />
+                {errors.quantity && <div className="error-message">{errors.quantity}</div>}
+              </div>
+
+              <div className="form-group">
+                <label className="form-label">نرخ *</label>
+                <input
+                  type="number"
+                  name="price"
+                  className={`form-input ${errors.price ? 'input-error' : ''}`}
+                  value={formData.price}
+                  onChange={handleInputChange}
+                  placeholder="نرخی کاڵاکە"
+                  min="0.01"
+                  step="0.01"
+                  required
+                />
+                {errors.price && <div className="error-message">{errors.price}</div>}
+              </div>
+
+              {message && (
+                <div className={message.includes('سەرکەوتوویی') ? 'success' : 'error'}>
+                  {message}
+                </div>
+              )}
+
+              <div className="form-actions">
+                <button type="submit" className="btn-primary">
+                  ناردن
+                </button>
+                <button type="button" onClick={goBack} className="btn-secondary">
+                  گەڕانەوە
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <div className="info-note">
+            <h3 className="note-title">تێبینی:</h3>
+            <p className="note-text">
+              ئەم فۆرمە بۆ تۆمارکردنی فرۆشتنەکانە. تکایە زانیاریەکان بە وردی پڕ بکەرەوە.
+            </p>
+          </div>
         </div>
       </div>
-    </div>
 
       <style jsx>{`
         body {
@@ -461,6 +462,6 @@ export default function SalesPage() {
           }
         }
       `}</style>
-    </div>
+    </>
   )
 }
