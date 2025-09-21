@@ -214,76 +214,76 @@ export default function SoldPage() {
               {dateSales.map((sale) => (
                 <div key={sale._id} className="sale-item-card">
                   {editingId === sale._id ? (
-                    <div>
-                      <div style={{ marginBottom: '1rem' }}>
-                        <label className="label">ناو</label>
+                    <div className="edit-form">
+                      <div className="form-group">
+                        <label className="form-label">ناو</label>
                         <input
                           type="text"
-                          className="input"
+                          className="form-input"
                           value={editData.name}
                           onChange={(e) => setEditData({...editData, name: e.target.value})}
                         />
                       </div>
-                      <div style={{ marginBottom: '1rem' }}>
-                        <label className="label">رەقەم</label>
+                      <div className="form-group">
+                        <label className="form-label">رەقەم</label>
                         <input
                           type="text"
-                          className="input"
+                          className="form-input"
                           value={editData.number}
                           onChange={(e) => setEditData({...editData, number: e.target.value})}
                         />
                       </div>
-                      <div style={{ marginBottom: '1rem' }}>
-                        <label className="label">ناونیشان</label>
+                      <div className="form-group">
+                        <label className="form-label">ناونیشان</label>
                         <input
                           type="text"
-                          className="input"
+                          className="form-input"
                           value={editData.address}
                           onChange={(e) => setEditData({...editData, address: e.target.value})}
                         />
                       </div>
-                      <div style={{ marginBottom: '1rem' }}>
-                        <label className="label">بەروار</label>
+                      <div className="form-group">
+                        <label className="form-label">بەروار</label>
                         <input
                           type="date"
-                          className="input"
+                          className="form-input"
                           value={editData.date}
                           onChange={(e) => setEditData({...editData, date: e.target.value})}
                         />
                       </div>
-                      <div style={{ marginBottom: '1rem' }}>
-                        <label className="label">وەسف</label>
+                      <div className="form-group">
+                        <label className="form-label">وەسف</label>
                         <textarea
-                          className="input"
+                          className="form-textarea"
                           value={editData.description}
                           onChange={(e) => setEditData({...editData, description: e.target.value})}
                           rows="3"
                         />
                       </div>
-                      <div style={{ marginBottom: '1rem' }}>
-                        <label className="label">چەند دانە</label>
+                      <div className="form-group">
+                        <label className="form-label">چەند دانە</label>
                         <input
                           type="number"
-                          className="input"
+                          className="form-input"
                           value={editData.quantity}
                           onChange={(e) => setEditData({...editData, quantity: e.target.value})}
                         />
                       </div>
-                      <div style={{ marginBottom: '1rem' }}>
-                        <label className="label">نرخ</label>
+                      <div className="form-group">
+                        <label className="form-label">نرخ</label>
                         <input
                           type="number"
-                          className="input"
+                          className="form-input"
                           value={editData.price}
                           onChange={(e) => setEditData({...editData, price: e.target.value})}
                           step="0.01"
                         />
                       </div>
-                      <div className="grid">
-                        <button onClick={saveEdit} className="btn">
+                      <div className="edit-actions">
+                        <button onClick={saveEdit} className="btn-primary">
                           پاشەکەوتکردن
                         </button>
-                        <button onClick={cancelEdit} className="btn btn-secondary">
+                        <button onClick={cancelEdit} className="btn-secondary">
                           پاشگەزبوونەوە
                         </button>
                       </div>
