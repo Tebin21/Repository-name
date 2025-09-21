@@ -144,6 +144,14 @@ export default function SoldPage() {
   }
 
   const exportToWord = async () => {
+    const isProduction = process.env.NODE_ENV === 'production'
+    
+    if (isProduction) {
+      setMessage('ئەم تایبەتمەندییە لە وێبسایتدا بەردەست نییە. تکایە ئەپەکە لە کۆمپیوتەر بەکاربهێنە.')
+      setTimeout(() => setMessage(''), 5000)
+      return
+    }
+    
     try {
       const response = await fetch('/api/export-pdf', {
         method: 'POST',
