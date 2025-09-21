@@ -94,9 +94,12 @@ export async function POST(request) {
     
     // Add to sales array
     sales.push(newSale)
+    console.log('About to write sales, new count:', sales.length)
     
     // Write back to file
-    if (writeSalesData(sales)) {
+    const writeResult = writeSalesData(sales)
+    console.log('Write result:', writeResult)
+    if (writeResult) {
       return NextResponse.json({ 
         success: true, 
         message: 'کاڵاکە بە سەرکەوتوویی زیادکرا',
