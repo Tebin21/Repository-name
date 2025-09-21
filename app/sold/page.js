@@ -66,26 +66,42 @@ export default function SoldPage() {
 
   const saveEdit = async () => {
     try {
-      const response = await fetch('/api/sales', {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          id: editingId,
-          ...editData
-        }),
-      })
-
-      if (response.ok) {
+      const isProduction = process.env.NODE_ENV === 'production'
+      
+      if (isProduction) {
+        // Use localStorage for GitHub Pages
+        const salesData = JSON.parse(localStorage.getItem('sales') || '[]')
+        const updatedSales = salesData.map(sale => 
+          sale._id === editingId 
+            ? { ...sale, ...editData, updatedAt: new Date().toISOString() }
+            : sale
+        )
+        localStorage.setItem('sales', JSON.stringify(updatedSales))
         setMessage('زانیارییەکان بە سەرکەوتوویی نوێکرانەوە!')
-        setEditingId(null)
-        setEditData({})
-        fetchSales()
-        setTimeout(() => setMessage(''), 3000)
       } else {
-        setMessage('هەڵەیەک ڕوویدا لە نوێکردنەوەدا')
+        // Use API for development
+        const response = await fetch('/api/sales', {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            id: editingId,
+            ...editData
+          }),
+        })
+
+        if (response.ok) {
+          setMessage('زانیارییەکان بە سەرکەوتوویی نوێکرانەوە!')
+        } else {
+          setMessage('هەڵەیەک ڕوویدا لە نوێکردنەوەدا')
+        }
       }
+      
+      setEditingId(null)
+      setEditData({})
+      fetchSales()
+      setTimeout(() => setMessage(''), 3000)
     } catch (error) {
       setMessage('هەڵەیەک ڕوویدا لە نوێکردنەوەدا')
     }
