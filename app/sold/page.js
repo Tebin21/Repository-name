@@ -177,22 +177,22 @@ export default function SoldPage() {
   const groupedSales = groupSalesByDate(sales)
 
   return (
-    <div className="container">
-      <div style={{ minHeight: '100vh', paddingTop: '1rem' }}>
-        <h1 className="title">لیستی کاڵا فرۆشراوەکان</h1>
+    <div className="sold-container">
+      <div className="sold-content">
+        <h1 className="page-title">لیستی کاڵا فرۆشراوەکان</h1>
         
         {message && (
-          <div className={message.includes('سەرکەوتوویی') ? 'success' : 'error'}>
+          <div className={message.includes('سەرکەوتوویی') ? 'success-message' : 'error-message'}>
             {message}
           </div>
         )}
 
-        <div className="card">
-          <div className="grid">
-            <button onClick={exportToWord} className="btn">
+        <div className="action-card">
+          <div className="action-buttons">
+            <button onClick={exportToWord} className="btn-primary">
               دەرهێنان بە Word
             </button>
-            <button onClick={goBack} className="btn btn-secondary">
+            <button onClick={goBack} className="btn-secondary">
               گەڕانەوە
             </button>
           </div>
