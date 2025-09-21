@@ -199,20 +199,20 @@ export default function SoldPage() {
         </div>
 
         {sales.length === 0 ? (
-          <div className="card">
-            <p style={{ textAlign: 'center', color: '#666', padding: '2rem' }}>
+          <div className="empty-card">
+            <p className="empty-text">
               هێشتا هیچ کاڵایەک زیاد نەکراوە
             </p>
           </div>
         ) : (
           Object.entries(groupedSales).map(([date, dateSales]) => (
-            <div key={date} className="card" style={{ marginBottom: '2rem' }}>
-              <h3 style={{ color: '#ff6b6b', marginBottom: '1rem', borderBottom: '2px solid #ff6b6b', paddingBottom: '0.5rem' }}>
+            <div key={date} className="date-group-card">
+              <h3 className="date-title">
                 {date === 'بێ بەروار' ? date : formatDate(date)}
               </h3>
               
               {dateSales.map((sale) => (
-                <div key={sale._id} className="item-card">
+                <div key={sale._id} className="sale-item-card">
                   {editingId === sale._id ? (
                     <div>
                       <div style={{ marginBottom: '1rem' }}>
