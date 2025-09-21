@@ -110,21 +110,33 @@ export default function SoldPage() {
   const deleteSale = async (id) => {
     if (confirm('دڵنیایت لە سڕینەوەی ئەم کاڵایە؟')) {
       try {
-        const response = await fetch('/api/sales', {
-          method: 'DELETE',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ id }),
-        })
-
-        if (response.ok) {
+        const isProduction = process.env.NODE_ENV === 'production'
+        
+        if (isProduction) {
+          // Use localStorage for GitHub Pages
+          const salesData = JSON.parse(localStorage.getItem('sales') || '[]')
+          const filteredSales = salesData.filter(sale => sale._id !== id)
+          localStorage.setItem('sales', JSON.stringify(filteredSales))
           setMessage('کاڵاکە بە سەرکەوتوویی سڕایەوە!')
-          fetchSales()
-          setTimeout(() => setMessage(''), 3000)
         } else {
-          setMessage('هەڵەیەک ڕوویدا لە سڕینەوەدا')
+          // Use API for development
+          const response = await fetch('/api/sales', {
+            method: 'DELETE',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ id }),
+          })
+
+          if (response.ok) {
+            setMessage('کاڵاکە بە سەرکەوتوویی سڕایەوە!')
+          } else {
+            setMessage('هەڵەیەک ڕوویدا لە سڕینەوەدا')
+          }
         }
+        
+        fetchSales()
+        setTimeout(() => setMessage(''), 3000)
       } catch (error) {
         setMessage('هەڵەیەک ڕوویدا لە سڕینەوەدا')
       }
