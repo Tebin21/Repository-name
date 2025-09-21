@@ -8,14 +8,16 @@ const dataFilePath = path.join(process.cwd(), 'data', 'sales.json')
 function readSalesData() {
   try {
     if (!fs.existsSync(dataFilePath)) {
-      // Create the data directory and file if they don't exist
+      // Create the directory if it doesn't exist
       const dataDir = path.dirname(dataFilePath)
       if (!fs.existsSync(dataDir)) {
         fs.mkdirSync(dataDir, { recursive: true })
       }
-      fs.writeFileSync(dataFilePath, '[]')
+      // Create empty sales file
+      fs.writeFileSync(dataFilePath, JSON.stringify([]))
       return []
     }
+    
     const data = fs.readFileSync(dataFilePath, 'utf8')
     return JSON.parse(data)
   } catch (error) {
@@ -43,16 +45,18 @@ function writeSalesData(data) {
 export async function GET() {
   try {
     const sales = readSalesData()
+    // Sort sales by creation date (newest first)
+    const sortedSales = sales.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
     return NextResponse.json({ 
       success: true, 
-      sales: sales.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+      sales: sortedSales
     })
   } catch (error) {
-    console.error('Error in GET /api/sales:', error)
-    return NextResponse.json(
-      { success: false, error: 'هەڵەیەک ڕوویدا لە خوێندنەوەی داتاکان' },
-      { status: 500 }
-    )
+    console.error('Error fetching sales:', error)
+    return NextResponse.json({ 
+      success: false, 
+      error: 'Failed to fetch sales' 
+    }, { status: 500 })
   }
 }
 
