@@ -66,7 +66,6 @@ export async function GET() {
 export async function POST(request) {
   try {
     const body = await request.json()
-    console.log('Received POST data:', body)
     
     // Validate required fields
     if (!body.name || !body.name.trim()) {
@@ -78,7 +77,6 @@ export async function POST(request) {
 
     // Read existing sales
     const sales = readSalesData()
-    console.log('Current sales count:', sales.length)
     
     // Create new sale object
     const newSale = {
