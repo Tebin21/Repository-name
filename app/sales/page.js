@@ -253,36 +253,21 @@ export default function SalesPage() {
               </div>
             )}
 
-            <div className="grid">
-              <button 
-                type="submit" 
-                className="btn"
-                disabled={loading}
-              >
-                {loading ? (
-                  <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
-                    <span className="spinner"></span>
-                    زیادکردن...
-                  </span>
-                ) : 'زیادکردن'}
+            <div className="form-actions">
+              <button type="submit" className="btn-primary">
+                ناردن
               </button>
-              
-              <button 
-                type="button" 
-                onClick={goBack}
-                className="btn btn-secondary"
-              >
+              <button type="button" onClick={goBack} className="btn-secondary">
                 گەڕانەوە
               </button>
             </div>
           </form>
         </div>
 
-        <div className="card" style={{ background: '#f8f9fa', marginTop: '1rem' }}>
-          <h3 style={{ color: '#333', marginBottom: '1rem' }}>تێبینی</h3>
-          <p style={{ color: '#666', lineHeight: '1.6' }}>
-            هەموو خانەکان ئیختیاری بن. تەنها ئەو زانیارییانە پڕ بکەوە کە پێویستن.
-            دوای زیادکردنی کاڵاکە، دەتوانیت لە بەشی "فرۆشراوە" ببینیتەوە.
+        <div className="info-note">
+          <h3 className="note-title">تێبینی:</h3>
+          <p className="note-text">
+            ئەم فۆرمە بۆ تۆمارکردنی فرۆشتنەکانە. تکایە زانیاریەکان بە وردی پڕ بکەرەوە.
           </p>
         </div>
       </div>
