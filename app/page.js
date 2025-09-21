@@ -16,7 +16,7 @@ export default function LoginPage() {
     setError('')
 
     // Simple authentication check
-    if (username === 'sarhang' && password === '1212') {
+    if (username === 'admin' && password === 'admin123') {
       // Store login status in localStorage
       localStorage.setItem('isLoggedIn', 'true')
       setError('')
@@ -80,8 +80,8 @@ export default function LoginPage() {
 
           <div style={{ marginTop: '2rem', padding: '1rem', background: '#f8f9fa', borderRadius: '10px' }}>
             <p style={{ fontSize: '14px', color: '#666', textAlign: 'center' }}>
-              ناوی بەکارهێنەر: sarhang<br />
-              پاسسۆرد: 1212
+              ناوی بەکارهێنەر: admin<br />
+              پاسسۆرد: admin123
             </p>
           </div>
         </div>

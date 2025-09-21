@@ -7,6 +7,7 @@ export default function SalesPage() {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState('')
+  const [errors, setErrors] = useState({})
   const [formData, setFormData] = useState({
     name: '',
     number: '',
@@ -33,18 +34,67 @@ export default function SalesPage() {
     setFormData(prev => ({ ...prev, date: today }))
   }, [router])
 
+  const validateForm = () => {
+    const newErrors = {}
+    
+    // Check required fields
+    if (!formData.name.trim()) {
+      newErrors.name = 'ناو پێویستە'
+    }
+    
+    if (!formData.quantity || formData.quantity <= 0) {
+      newErrors.quantity = 'ژمارەی دانە پێویستە و دەبێت زیاتر لە سفر بێت'
+    }
+    
+    if (!formData.price || formData.price <= 0) {
+      newErrors.price = 'نرخ پێویستە و دەبێت زیاتر لە سفر بێت'
+    }
+    
+    if (!formData.date) {
+      newErrors.date = 'بەروار پێویستە'
+    }
+    
+    // Validate number format for quantity and price
+    if (formData.quantity && isNaN(formData.quantity)) {
+      newErrors.quantity = 'ژمارەی دانە دەبێت ژمارە بێت'
+    }
+    
+    if (formData.price && isNaN(formData.price)) {
+      newErrors.price = 'نرخ دەبێت ژمارە بێت'
+    }
+    
+    setErrors(newErrors)
+    return Object.keys(newErrors).length === 0
+  }
+
   const handleInputChange = (e) => {
     const { name, value } = e.target
     setFormData(prev => ({
       ...prev,
       [name]: value
     }))
+    
+    // Clear error for this field when user starts typing
+    if (errors[name]) {
+      setErrors(prev => ({
+        ...prev,
+        [name]: ''
+      }))
+    }
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    setLoading(true)
     setMessage('')
+    setErrors({})
+
+    // Validate form before submission
+    if (!validateForm()) {
+      setMessage('تکایە هەموو خانە پێویستەکان پڕ بکەوە')
+      return
+    }
+
+    setLoading(true)
 
     try {
       const response = await fetch('/api/sales', {
@@ -58,6 +108,8 @@ export default function SalesPage() {
         }),
       })
 
+      const result = await response.json()
+
       if (response.ok) {
         setMessage('کاڵاکە بە سەرکەوتوویی زیادکرا!')
         // Reset form
@@ -70,11 +122,13 @@ export default function SalesPage() {
           quantity: '',
           price: ''
         })
+        setErrors({})
       } else {
-        setMessage('هەڵەیەک ڕوویدا، تکایە دووبارە هەوڵ بدەوە')
+        setMessage(result.error || 'هەڵەیەک ڕوویدا، تکایە دووبارە هەوڵ بدەوە')
       }
     } catch (error) {
-      setMessage('هەڵەیەک ڕوویدا، تکایە دووبارە هەوڵ بدەوە')
+      console.error('Error:', error)
+      setMessage('هەڵەیەک ڕوویدا لە پەیوەندی کردن. تکایە ئینتەرنێتەکەت بپشکنە و دووبارە هەوڵ بدەوە')
     }
 
     setLoading(false)
@@ -100,15 +154,17 @@ export default function SalesPage() {
         <div className="card">
           <form onSubmit={handleSubmit}>
             <div style={{ marginBottom: '1rem' }}>
-              <label className="label">ناو</label>
+              <label className="label">ناو *</label>
               <input
                 type="text"
                 name="name"
-                className="input"
+                className={`input ${errors.name ? 'input-error' : ''}`}
                 value={formData.name}
                 onChange={handleInputChange}
                 placeholder="ناوی کاڵاکە"
+                required
               />
+              {errors.name && <div className="error-text">{errors.name}</div>}
             </div>
 
             <div style={{ marginBottom: '1rem' }}>
@@ -136,14 +192,16 @@ export default function SalesPage() {
             </div>
 
             <div style={{ marginBottom: '1rem' }}>
-              <label className="label">بەروار</label>
+              <label className="label">بەروار *</label>
               <input
                 type="date"
                 name="date"
-                className="input"
+                className={`input ${errors.date ? 'input-error' : ''}`}
                 value={formData.date}
                 onChange={handleInputChange}
+                required
               />
+              {errors.date && <div className="error-text">{errors.date}</div>}
             </div>
 
             <div style={{ marginBottom: '1rem' }}>
@@ -160,30 +218,34 @@ export default function SalesPage() {
             </div>
 
             <div style={{ marginBottom: '1rem' }}>
-              <label className="label">چەند دانە</label>
+              <label className="label">چەند دانە *</label>
               <input
                 type="number"
                 name="quantity"
-                className="input"
+                className={`input ${errors.quantity ? 'input-error' : ''}`}
                 value={formData.quantity}
                 onChange={handleInputChange}
                 placeholder="ژمارەی دانە"
-                min="0"
+                min="1"
+                required
               />
+              {errors.quantity && <div className="error-text">{errors.quantity}</div>}
             </div>
 
             <div style={{ marginBottom: '1rem' }}>
-              <label className="label">نرخ</label>
+              <label className="label">نرخ *</label>
               <input
                 type="number"
                 name="price"
-                className="input"
+                className={`input ${errors.price ? 'input-error' : ''}`}
                 value={formData.price}
                 onChange={handleInputChange}
                 placeholder="نرخی کاڵاکە"
-                min="0"
+                min="0.01"
                 step="0.01"
+                required
               />
+              {errors.price && <div className="error-text">{errors.price}</div>}
             </div>
 
             {message && (
@@ -198,7 +260,12 @@ export default function SalesPage() {
                 className="btn"
                 disabled={loading}
               >
-                {loading ? 'زیادکردن...' : 'زیادکردن'}
+                {loading ? (
+                  <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
+                    <span className="spinner"></span>
+                    زیادکردن...
+                  </span>
+                ) : 'زیادکردن'}
               </button>
               
               <button 

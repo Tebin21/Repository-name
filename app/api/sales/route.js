@@ -9,6 +9,32 @@ export async function POST(request) {
 
     const data = await request.json()
     
+    // Server-side validation
+    const errors = []
+    
+    if (!data.name || !data.name.trim()) {
+      errors.push('ناو پێویستە')
+    }
+    
+    if (!data.quantity || data.quantity <= 0) {
+      errors.push('ژمارەی دانە پێویستە و دەبێت زیاتر لە سفر بێت')
+    }
+    
+    if (!data.price || data.price <= 0) {
+      errors.push('نرخ پێویستە و دەبێت زیاتر لە سفر بێت')
+    }
+    
+    if (!data.date) {
+      errors.push('بەروار پێویستە')
+    }
+    
+    if (errors.length > 0) {
+      return NextResponse.json({ 
+        error: errors.join(', '),
+        validation_errors: errors 
+      }, { status: 400 })
+    }
+    
     const result = await collection.insertOne({
       ...data,
       createdAt: new Date(),
@@ -18,7 +44,9 @@ export async function POST(request) {
     return NextResponse.json({ success: true, id: result.insertedId })
   } catch (error) {
     console.error('Error saving sale:', error)
-    return NextResponse.json({ error: 'Failed to save sale' }, { status: 500 })
+    return NextResponse.json({ 
+      error: 'هەڵەیەک ڕوویدا لە هەڵگرتنی زانیارییەکان. تکایە دووبارە هەوڵ بدەوە' 
+    }, { status: 500 })
   }
 }
 
