@@ -35,7 +35,7 @@ export default function LoginPage() {
     <div className="container">
       <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <div className="card" style={{ maxWidth: '400px', width: '100%' }}>
-          <h1 className="title" style={{ color: '#333', textShadow: 'none' }}>سیستەمی فرۆشتن</h1>
+          <h1 className="title" style={{ color: '#333', textShadow: 'none' }}>سیستەمی فرۆشتن - Auto Deploy ✨</h1>
           
           <form onSubmit={handleLogin}>
             <div style={{ marginBottom: '1.5rem' }}>
