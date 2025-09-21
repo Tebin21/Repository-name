@@ -42,25 +42,20 @@ export default function SalesPage() {
       newErrors.name = 'ناو پێویستە'
     }
     
-    if (!formData.quantity || formData.quantity <= 0) {
-      newErrors.quantity = 'ژمارەی دانە پێویستە و دەبێت زیاتر لە سفر بێت'
+    // Convert to numbers for validation
+    const quantity = parseFloat(formData.quantity)
+    const price = parseFloat(formData.price)
+    
+    if (!formData.quantity || formData.quantity.trim() === '' || isNaN(quantity) || quantity <= 0) {
+      newErrors.quantity = 'ژمارەی دانە پێویستە و دەبێت ژمارەیەکی دروست بێت کە زیاتر لە سفر بێت'
     }
     
-    if (!formData.price || formData.price <= 0) {
-      newErrors.price = 'نرخ پێویستە و دەبێت زیاتر لە سفر بێت'
+    if (!formData.price || formData.price.trim() === '' || isNaN(price) || price <= 0) {
+      newErrors.price = 'نرخ پێویستە و دەبێت ژمارەیەکی دروست بێت کە زیاتر لە سفر بێت'
     }
     
     if (!formData.date) {
       newErrors.date = 'بەروار پێویستە'
-    }
-    
-    // Validate number format for quantity and price
-    if (formData.quantity && isNaN(formData.quantity)) {
-      newErrors.quantity = 'ژمارەی دانە دەبێت ژمارە بێت'
-    }
-    
-    if (formData.price && isNaN(formData.price)) {
-      newErrors.price = 'نرخ دەبێت ژمارە بێت'
     }
     
     setErrors(newErrors)
