@@ -45,8 +45,10 @@ function writeSalesData(data) {
 export async function GET() {
   try {
     const sales = readSalesData()
+    // Ensure sales is an array before sorting
+    const salesArray = Array.isArray(sales) ? sales : []
     // Sort sales by creation date (newest first)
-    const sortedSales = sales.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+    const sortedSales = salesArray.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
     return NextResponse.json({ 
       success: true, 
       sales: sortedSales
