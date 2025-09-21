@@ -92,35 +92,58 @@ export default function SalesPage() {
     setLoading(true)
 
     try {
-      const response = await fetch('/api/sales', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
+      // Check if we're in production mode (GitHub Pages)
+      const isProduction = process.env.NODE_ENV === 'production'
+      
+      if (isProduction) {
+        // Use localStorage for GitHub Pages
+        const newSale = {
+          _id: Date.now().toString() + Math.random().toString(36).substr(2, 9),
           ...formData,
-          createdAt: new Date().toISOString()
-        }),
-      })
-
-      const result = await response.json()
-
-      if (response.ok) {
+          createdAt: new Date().toISOString(),
+          updatedAt: new Date().toISOString()
+        }
+        
+        // Get existing sales from localStorage
+        const existingSales = JSON.parse(localStorage.getItem('sales') || '[]')
+        existingSales.push(newSale)
+        localStorage.setItem('sales', JSON.stringify(existingSales))
+        
         setMessage('کاڵاکە بە سەرکەوتوویی زیادکرا!')
-        // Reset form
-        setFormData({
-          name: '',
-          number: '',
-          address: '',
-          date: new Date().toISOString().split('T')[0],
-          description: '',
-          quantity: '',
-          price: ''
-        })
-        setErrors({})
       } else {
-        setMessage(result.error || 'هەڵەیەک ڕوویدا، تکایە دووبارە هەوڵ بدەوە')
+        // Use API for development
+        const response = await fetch('/api/sales', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            ...formData,
+            createdAt: new Date().toISOString()
+          }),
+        })
+
+        const result = await response.json()
+
+        if (response.ok) {
+          setMessage('کاڵاکە بە سەرکەوتوویی زیادکرا!')
+        } else {
+          setMessage(result.error || 'هەڵەیەک ڕوویدا، تکایە دووبارە هەوڵ بدەوە')
+        }
       }
+      
+      // Reset form
+      setFormData({
+        name: '',
+        number: '',
+        address: '',
+        date: new Date().toISOString().split('T')[0],
+        description: '',
+        quantity: '',
+        price: ''
+      })
+      setErrors({})
+      
     } catch (error) {
       console.error('Error:', error)
       setMessage('هەڵەیەک ڕوویدا لە پەیوەندی کردن. تکایە ئینتەرنێتەکەت بپشکنە و دووبارە هەوڵ بدەوە')
