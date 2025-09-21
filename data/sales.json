@@ -46,5 +46,17 @@
     "price": "2000",
     "createdAt": "2025-09-21T12:51:38.749Z",
     "updatedAt": "2025-09-21T12:51:38.881Z"
+  },
+  {
+    "_id": "1758459449780qb76q7l8t",
+    "name": "sac",
+    "number": "231",
+    "address": "asc",
+    "date": "2025-09-21",
+    "description": "asc",
+    "quantity": "8",
+    "price": "500",
+    "createdAt": "2025-09-21T12:57:29.621Z",
+    "updatedAt": "2025-09-21T12:57:29.780Z"
   }
 ]

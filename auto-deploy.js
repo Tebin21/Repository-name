@@ -6,7 +6,7 @@ const { exec } = require('child_process');
 
 console.log('🚀 Auto-Deploy System Started!');
 console.log('📁 Watching for file changes...');
-console.log('🌐 Any change will automatically update: https://tebin21.github.io/Repository-name');
+console.log('🌐 Any change will automatically update: https://tebin21.github.io/kurdish-sales-app');
 console.log('⏹️  Press Ctrl+C to stop\n');
 
 let isDeploying = false;
@@ -53,7 +53,7 @@ function deployToGitHub() {
   function runCommand(index) {
     if (index >= commands.length) {
       console.log('✅ Successfully deployed to GitHub Pages!');
-      console.log('🌐 Live site: https://tebin21.github.io/Repository-name');
+      console.log('🌐 Live site: https://tebin21.github.io/kurdish-sales-app');
       console.log('⏰ Changes will be live in 1-2 minutes\n');
       
       isDeploying = false;
