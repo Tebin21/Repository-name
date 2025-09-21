@@ -4,7 +4,6 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 
 export default function LoginPage() {
-  const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
@@ -15,8 +14,8 @@ export default function LoginPage() {
     setLoading(true)
     setError('')
 
-    // Simple authentication check
-    if (username === 'admin' && password === 'admin123') {
+    // Simple authentication check - password only
+    if (password === '1212') {
       // Store login status in localStorage
       localStorage.setItem('isLoggedIn', 'true')
       setError('')
@@ -39,27 +38,16 @@ export default function LoginPage() {
           <h1 className="title" style={{ color: '#333', textShadow: 'none' }}>سیستەمی فرۆشتن</h1>
           
           <form onSubmit={handleLogin}>
-            <div style={{ marginBottom: '1rem' }}>
-              <label className="label">ناوی بەکارهێنەر</label>
-              <input
-                type="text"
-                className="input"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                placeholder="ناوی بەکارهێنەر"
-                required
-              />
-            </div>
-
-            <div style={{ marginBottom: '1rem' }}>
+            <div style={{ marginBottom: '1.5rem' }}>
               <label className="label">پاسسۆرد</label>
               <input
                 type="password"
                 className="input"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="پاسسۆرد"
+                placeholder="پاسسۆردەکە بنووسە"
                 required
+                style={{ fontSize: '18px', padding: '15px' }}
               />
             </div>
 
@@ -78,10 +66,9 @@ export default function LoginPage() {
             </button>
           </form>
 
-          <div style={{ marginTop: '2rem', padding: '1rem', background: '#f8f9fa', borderRadius: '10px' }}>
-            <p style={{ fontSize: '14px', color: '#666', textAlign: 'center' }}>
-              ناوی بەکارهێنەر: admin<br />
-              پاسسۆرد: admin123
+          <div style={{ marginTop: '2rem', padding: '1rem', background: '#e8f5e8', borderRadius: '10px', border: '2px solid #4CAF50' }}>
+            <p style={{ fontSize: '16px', color: '#2e7d32', textAlign: 'center', fontWeight: 'bold' }}>
+              پاسسۆرد: 1212
             </p>
           </div>
         </div>
