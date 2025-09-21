@@ -289,27 +289,25 @@ export default function SoldPage() {
                       </div>
                     </div>
                   ) : (
-                    <div>
-                      <h3>{sale.name || 'بێ ناو'}</h3>
-                      {sale.number && <p><strong>رەقەم:</strong> {sale.number}</p>}
-                      {sale.address && <p><strong>ناونیشان:</strong> {sale.address}</p>}
-                      {sale.date && <p><strong>بەروار:</strong> {formatDate(sale.date)}</p>}
-                      {sale.description && <p><strong>وەسف:</strong> {sale.description}</p>}
-                      {sale.quantity && <p><strong>چەند دانە:</strong> {sale.quantity}</p>}
-                      {sale.price && <p><strong>نرخ:</strong> {sale.price}</p>}
+                    <div className="sale-display">
+                      <h3 className="sale-title">{sale.name || 'بێ ناو'}</h3>
+                      {sale.number && <p className="sale-detail"><strong>رەقەم:</strong> {sale.number}</p>}
+                      {sale.address && <p className="sale-detail"><strong>ناونیشان:</strong> {sale.address}</p>}
+                      {sale.date && <p className="sale-detail"><strong>بەروار:</strong> {formatDate(sale.date)}</p>}
+                      {sale.description && <p className="sale-detail"><strong>وەسف:</strong> {sale.description}</p>}
+                      {sale.quantity && <p className="sale-detail"><strong>چەند دانە:</strong> {sale.quantity}</p>}
+                      {sale.price && <p className="sale-detail"><strong>نرخ:</strong> {sale.price}</p>}
                       
-                      <div className="grid" style={{ marginTop: '1rem' }}>
+                      <div className="item-actions">
                         <button 
                           onClick={() => startEdit(sale)} 
-                          className="btn"
-                          style={{ background: 'linear-gradient(45deg, #27ae60, #2ecc71)' }}
+                          className="btn-edit"
                         >
                           دەستکاری
                         </button>
                         <button 
                           onClick={() => deleteSale(sale._id)} 
-                          className="btn"
-                          style={{ background: 'linear-gradient(45deg, #e74c3c, #c0392b)' }}
+                          className="btn-delete"
                         >
                           سڕینەوە
                         </button>
