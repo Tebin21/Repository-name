@@ -7,9 +7,7 @@ const dataFilePath = path.join(process.cwd(), 'data', 'sales.json')
 // Helper function to read sales data
 function readSalesData() {
   try {
-    console.log('Reading sales data from:', dataFilePath)
     if (!fs.existsSync(dataFilePath)) {
-      console.log('File does not exist, creating empty array')
       // Create the directory if it doesn't exist
       const dataDir = path.dirname(dataFilePath)
       if (!fs.existsSync(dataDir)) {
@@ -21,9 +19,7 @@ function readSalesData() {
     }
     
     const data = fs.readFileSync(dataFilePath, 'utf8')
-    const parsed = JSON.parse(data)
-    console.log('Successfully read sales data, count:', parsed.length)
-    return parsed
+    return JSON.parse(data)
   } catch (error) {
     console.error('Error reading sales data:', error)
     return []
