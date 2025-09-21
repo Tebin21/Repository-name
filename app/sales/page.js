@@ -272,5 +272,195 @@ export default function SalesPage() {
         </div>
       </div>
     </div>
+
+      <style jsx>{`
+        body {
+          background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+          margin: 0;
+          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .sales-container {
+          min-height: 100vh;
+          background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+          padding: 2rem;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .page-title {
+          background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          font-size: 2.5rem;
+          font-weight: bold;
+          margin-bottom: 2rem;
+          text-align: center;
+          text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .form-card {
+          background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
+          border-radius: 20px;
+          padding: 2.5rem;
+          box-shadow: 0 25px 50px rgba(220, 38, 38, 0.15), 0 0 0 1px rgba(220, 38, 38, 0.1);
+          width: 100%;
+          max-width: 600px;
+          margin-bottom: 1rem;
+          border: 2px solid rgba(220, 38, 38, 0.1);
+        }
+
+        .sales-form {
+          display: flex;
+          flex-direction: column;
+          gap: 1.5rem;
+        }
+
+        .form-group {
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
+        }
+
+        .form-label {
+          font-weight: 600;
+          color: #1a1a1a;
+          font-size: 1rem;
+          margin-bottom: 0.5rem;
+        }
+
+        .form-input, .form-textarea {
+          width: 100%;
+          padding: 1rem;
+          border: 2px solid #e5e7eb;
+          border-radius: 12px;
+          font-size: 1rem;
+          transition: all 0.3s ease;
+          background: #ffffff;
+          box-sizing: border-box;
+        }
+
+        .form-input:focus, .form-textarea:focus {
+          outline: none;
+          border-color: #dc2626;
+          background: #ffffff;
+          box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+          transform: translateY(-1px);
+        }
+
+        .form-textarea {
+          resize: vertical;
+          min-height: 100px;
+          font-family: inherit;
+        }
+
+        .input-error {
+          border-color: #dc2626;
+          background: #fef2f2;
+        }
+
+        .error-message {
+          color: #dc2626;
+          font-size: 0.875rem;
+          font-weight: 500;
+          margin-top: 0.25rem;
+        }
+
+        .form-actions {
+          display: flex;
+          gap: 1rem;
+          margin-top: 2rem;
+          justify-content: center;
+        }
+
+        .btn-primary, .btn-secondary {
+          padding: 1rem 2rem;
+          border: none;
+          border-radius: 12px;
+          font-size: 1rem;
+          font-weight: 600;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          text-decoration: none;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          min-width: 140px;
+        }
+
+        .btn-primary {
+          background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+          color: white;
+          box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3);
+        }
+
+        .btn-primary:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 8px 25px rgba(220, 38, 38, 0.4);
+          background: linear-gradient(135deg, #b91c1c 0%, #7f1d1d 100%);
+        }
+
+        .btn-secondary {
+          background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
+          color: white;
+          box-shadow: 0 4px 15px rgba(107, 114, 128, 0.3);
+        }
+
+        .btn-secondary:hover {
+          background: linear-gradient(135deg, #4b5563 0%, #374151 100%);
+          transform: translateY(-2px);
+          box-shadow: 0 8px 25px rgba(107, 114, 128, 0.4);
+        }
+
+        .info-note {
+          background: linear-gradient(145deg, #f9fafb 0%, #f3f4f6 100%);
+          border: 2px solid rgba(220, 38, 38, 0.1);
+          border-radius: 16px;
+          padding: 1.5rem;
+          margin-top: 2rem;
+          max-width: 600px;
+          width: 100%;
+          box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .note-title {
+          color: #dc2626;
+          font-size: 1.25rem;
+          font-weight: 700;
+          margin: 0 0 0.75rem 0;
+        }
+
+        .note-text {
+          color: #4b5563;
+          font-size: 0.95rem;
+          line-height: 1.6;
+          margin: 0;
+        }
+
+        @media (max-width: 768px) {
+          .sales-container {
+            padding: 1rem;
+          }
+          
+          .page-title {
+            font-size: 2rem;
+          }
+          
+          .form-card {
+            padding: 1.5rem;
+          }
+
+          .form-actions {
+            flex-direction: column;
+          }
+
+          .btn-primary, .btn-secondary {
+            width: 100%;
+          }
+        }
+      `}</style>
+    </div>
   )
 }
