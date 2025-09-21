@@ -198,6 +198,293 @@ export default function SoldPage() {
           </div>
         </div>
 
+      <style jsx>{`
+        .sold-container {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 2rem;
+          background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #000000 100%);
+          min-height: 100vh;
+        }
+        
+        .sold-content {
+          background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+          border-radius: 20px;
+          padding: 2rem;
+          box-shadow: 0 20px 40px rgba(220, 20, 60, 0.3);
+          border: 2px solid #dc143c;
+        }
+        
+        .page-title {
+          text-align: center;
+          background: linear-gradient(45deg, #dc143c, #000000);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          margin-bottom: 2rem;
+          font-size: 2.5rem;
+          font-weight: bold;
+          text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .success-message {
+          padding: 1rem;
+          margin: 1rem 0;
+          border-radius: 10px;
+          text-align: center;
+          font-weight: bold;
+          border: 2px solid #dc143c;
+          background: linear-gradient(45deg, #dc143c, #ff1744);
+          color: white;
+        }
+        
+        .error-message {
+          padding: 1rem;
+          margin: 1rem 0;
+          border-radius: 10px;
+          text-align: center;
+          font-weight: bold;
+          border: 2px solid #dc143c;
+          background: linear-gradient(45deg, #000000, #333333);
+          color: white;
+        }
+        
+        .action-card {
+          background: linear-gradient(135deg, #dc143c 0%, #000000 100%);
+          border-radius: 15px;
+          padding: 1.5rem;
+          margin-bottom: 1rem;
+          box-shadow: 0 10px 20px rgba(220, 20, 60, 0.3);
+          color: white;
+          border: 2px solid #ffffff;
+        }
+        
+        .action-buttons {
+          display: flex;
+          gap: 1rem;
+          justify-content: center;
+        }
+        
+        .btn-primary {
+          padding: 0.75rem 1.5rem;
+          border: 2px solid #dc143c;
+          border-radius: 10px;
+          background: linear-gradient(45deg, #dc143c, #ff1744);
+          color: white;
+          font-weight: bold;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          text-decoration: none;
+          display: inline-block;
+        }
+        
+        .btn-primary:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 5px 15px rgba(220, 20, 60, 0.4);
+          background: linear-gradient(45deg, #ff1744, #dc143c);
+        }
+        
+        .btn-secondary {
+          padding: 0.75rem 1.5rem;
+          border: 2px solid #000000;
+          border-radius: 10px;
+          background: linear-gradient(45deg, #000000, #333333);
+          color: white;
+          font-weight: bold;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          text-decoration: none;
+          display: inline-block;
+        }
+        
+        .btn-secondary:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+          background: linear-gradient(45deg, #333333, #000000);
+        }
+        
+        .empty-card {
+          background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+          border: 2px solid #dc143c;
+          border-radius: 15px;
+          padding: 2rem;
+          text-align: center;
+          box-shadow: 0 10px 20px rgba(220, 20, 60, 0.1);
+        }
+        
+        .empty-text {
+          color: #dc143c;
+          font-size: 1.2rem;
+          font-weight: bold;
+          margin: 0;
+        }
+        
+        .date-group-card {
+          margin-bottom: 2rem;
+        }
+        
+        .date-title {
+          background: linear-gradient(45deg, #000000, #dc143c);
+          color: white;
+          padding: 1rem;
+          border-radius: 10px;
+          margin-bottom: 1rem;
+          font-weight: bold;
+          text-align: center;
+          border: 2px solid #ffffff;
+          box-shadow: 0 5px 15px rgba(220, 20, 60, 0.3);
+        }
+        
+        .sale-item-card {
+          background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+          border-radius: 10px;
+          padding: 1.5rem;
+          margin-bottom: 1rem;
+          box-shadow: 0 5px 15px rgba(220, 20, 60, 0.2);
+          border: 2px solid #dc143c;
+          border-left: 5px solid #000000;
+        }
+        
+        .sale-display {
+          width: 100%;
+        }
+        
+        .sale-title {
+          color: #000000;
+          margin-bottom: 1rem;
+          font-weight: bold;
+          font-size: 1.3rem;
+        }
+        
+        .sale-detail {
+          margin: 0.5rem 0;
+          color: #333333;
+        }
+        
+        .sale-detail strong {
+          color: #dc143c;
+        }
+        
+        .item-actions {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 1rem;
+          margin-top: 1rem;
+        }
+        
+        .btn-edit {
+          padding: 0.5rem 1rem;
+          border: 2px solid #dc143c;
+          border-radius: 8px;
+          background: linear-gradient(45deg, #dc143c, #ff1744);
+          color: white;
+          font-weight: bold;
+          cursor: pointer;
+          transition: all 0.3s ease;
+        }
+        
+        .btn-edit:hover {
+          transform: translateY(-1px);
+          box-shadow: 0 3px 10px rgba(220, 20, 60, 0.4);
+        }
+        
+        .btn-delete {
+          padding: 0.5rem 1rem;
+          border: 2px solid #000000;
+          border-radius: 8px;
+          background: linear-gradient(45deg, #000000, #333333);
+          color: white;
+          font-weight: bold;
+          cursor: pointer;
+          transition: all 0.3s ease;
+        }
+        
+        .btn-delete:hover {
+          transform: translateY(-1px);
+          box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
+        }
+        
+        .edit-form {
+          background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+          border: 2px solid #dc143c;
+          border-radius: 10px;
+          padding: 1.5rem;
+          margin-bottom: 1rem;
+        }
+        
+        .form-group {
+          margin-bottom: 1rem;
+        }
+        
+        .form-label {
+          display: block;
+          margin-bottom: 0.5rem;
+          color: #000000;
+          font-weight: bold;
+        }
+        
+        .form-input,
+        .form-textarea {
+          width: 100%;
+          padding: 0.75rem;
+          border: 2px solid #dc143c;
+          border-radius: 8px;
+          font-size: 1rem;
+          transition: all 0.3s ease;
+          background: white;
+        }
+        
+        .form-input:focus,
+        .form-textarea:focus {
+          outline: none;
+          border-color: #000000;
+          box-shadow: 0 0 10px rgba(220, 20, 60, 0.3);
+        }
+        
+        .form-textarea {
+          resize: vertical;
+          min-height: 100px;
+        }
+        
+        .edit-actions {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 1rem;
+          margin-top: 1rem;
+        }
+        
+        .loading {
+          text-align: center;
+          color: #dc143c;
+          font-size: 1.2rem;
+          font-weight: bold;
+          padding: 2rem;
+        }
+        
+        @media (max-width: 768px) {
+          .sold-container {
+            padding: 1rem;
+          }
+          
+          .sold-content {
+            padding: 1rem;
+          }
+          
+          .page-title {
+            font-size: 2rem;
+          }
+          
+          .action-buttons {
+            flex-direction: column;
+          }
+          
+          .item-actions,
+          .edit-actions {
+            grid-template-columns: 1fr;
+          }
+        }
+      `}</style>
+
         {sales.length === 0 ? (
           <div className="empty-card">
             <p className="empty-text">
