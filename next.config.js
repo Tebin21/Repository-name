@@ -4,8 +4,8 @@ const nextConfig = {
   images: {
     unoptimized: true
   },
-  basePath: process.env.NODE_ENV === 'production' ? '/barannnn' : '',
-  assetPrefix: process.env.NODE_ENV === 'production' ? '/barannnn/' : '',
+  basePath: process.env.NODE_ENV === 'production' ? '/kurdish-sales-app' : '',
+  assetPrefix: process.env.NODE_ENV === 'production' ? '/kurdish-sales-app/' : '',
   // Enable static export for GitHub Pages in production
   ...(process.env.NODE_ENV === 'production' && {
     output: 'export'
