@@ -153,91 +153,90 @@ export default function SalesPage() {
         
         <div className="form-card">
           <form onSubmit={handleSubmit} className="sales-form">
-            <div style={{ marginBottom: '1rem' }}>
-              <label className="label">ناو *</label>
+            <div className="form-group">
+              <label className="form-label">ناو *</label>
               <input
                 type="text"
                 name="name"
-                className={`input ${errors.name ? 'input-error' : ''}`}
+                className={`form-input ${errors.name ? 'input-error' : ''}`}
                 value={formData.name}
                 onChange={handleInputChange}
                 placeholder="ناوی کاڵاکە"
                 required
               />
-              {errors.name && <div className="error-text">{errors.name}</div>}
+              {errors.name && <div className="error-message">{errors.name}</div>}
             </div>
 
-            <div style={{ marginBottom: '1rem' }}>
-              <label className="label">رەقەم</label>
+            <div className="form-group">
+              <label className="form-label">رەقەم</label>
               <input
                 type="text"
                 name="number"
-                className="input"
+                className="form-input"
                 value={formData.number}
                 onChange={handleInputChange}
                 placeholder="رەقەمی کاڵاکە"
               />
             </div>
 
-            <div style={{ marginBottom: '1rem' }}>
-              <label className="label">ناونیشان</label>
+            <div className="form-group">
+              <label className="form-label">ناونیشان</label>
               <input
                 type="text"
                 name="address"
-                className="input"
+                className="form-input"
                 value={formData.address}
                 onChange={handleInputChange}
                 placeholder="ناونیشانی کڕیار"
               />
             </div>
 
-            <div style={{ marginBottom: '1rem' }}>
-              <label className="label">بەروار *</label>
+            <div className="form-group">
+              <label className="form-label">بەروار *</label>
               <input
                 type="date"
                 name="date"
-                className={`input ${errors.date ? 'input-error' : ''}`}
+                className={`form-input ${errors.date ? 'input-error' : ''}`}
                 value={formData.date}
                 onChange={handleInputChange}
                 required
               />
-              {errors.date && <div className="error-text">{errors.date}</div>}
+              {errors.date && <div className="error-message">{errors.date}</div>}
             </div>
 
-            <div style={{ marginBottom: '1rem' }}>
-              <label className="label">وەسف</label>
+            <div className="form-group">
+              <label className="form-label">وەسف</label>
               <textarea
                 name="description"
-                className="input"
+                className="form-textarea"
                 value={formData.description}
                 onChange={handleInputChange}
                 placeholder="وەسفی کاڵاکە"
                 rows="3"
-                style={{ resize: 'vertical', minHeight: '80px' }}
               />
             </div>
 
-            <div style={{ marginBottom: '1rem' }}>
-              <label className="label">چەند دانە *</label>
+            <div className="form-group">
+              <label className="form-label">چەند دانە *</label>
               <input
                 type="number"
                 name="quantity"
-                className={`input ${errors.quantity ? 'input-error' : ''}`}
+                className={`form-input ${errors.quantity ? 'input-error' : ''}`}
                 value={formData.quantity}
                 onChange={handleInputChange}
                 placeholder="ژمارەی دانە"
                 min="1"
                 required
               />
-              {errors.quantity && <div className="error-text">{errors.quantity}</div>}
+              {errors.quantity && <div className="error-message">{errors.quantity}</div>}
             </div>
 
-            <div style={{ marginBottom: '1rem' }}>
-              <label className="label">نرخ *</label>
+            <div className="form-group">
+              <label className="form-label">نرخ *</label>
               <input
                 type="number"
                 name="price"
-                className={`input ${errors.price ? 'input-error' : ''}`}
+                className={`form-input ${errors.price ? 'input-error' : ''}`}
                 value={formData.price}
                 onChange={handleInputChange}
                 placeholder="نرخی کاڵاکە"
@@ -245,7 +244,7 @@ export default function SalesPage() {
                 step="0.01"
                 required
               />
-              {errors.price && <div className="error-text">{errors.price}</div>}
+              {errors.price && <div className="error-message">{errors.price}</div>}
             </div>
 
             {message && (
